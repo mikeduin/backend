@@ -1,0 +1,75 @@
+exports.up = function(knex, Promise) {
+
+
+  return Promise.all([
+
+    knex.schema.createTable('users', function(table){
+      table.increments('uid').primary();
+      table.string('email');
+      table.string('password').nullable();
+      table.string('oauth').nullable();
+      table.string('token').nullable();
+      table.string('first_name');
+      table.string('last_name');
+    }),
+
+    knex.schema.createTable('auth', function(table){
+      table.increments('id').primary();
+      table.integer('hunt_id')
+        .references('id')
+        .inTable('hunts');
+      table.integer('user_id')
+        .references('id')
+        .inTable('users');
+      table.string('permissions');
+    }),
+
+    knex.schema.createTable('hunts', function(table){
+      table.increments('id').primary();
+      table.string('hunt_name');
+      table.date('date');
+      table.time('start_time');
+      table.time('end_time');
+      table.string('general_location');
+      table.string('general_description');
+    }),
+
+    knex.schema.createTable('clues', function(table){
+      table.increments('id').primary();
+      table.integer('hunt_id')
+        .references('id')
+        .inTable('hunts');
+      table.string('clue');
+      table.string('location_name');
+      table.integer('longitude');
+      table.integer('latitude');
+    }),
+
+    knex.schema.createTable('invites', function(table){
+      table.increments('id').primary();
+      table.integer('hunt_id')
+        .references('id')
+        .inTable('hunts');
+      table.string('email');
+      table.string('name')
+        .references('first_name')
+        .inTable('users');
+      table.date('rsvp_by');
+      table.string('rsvp').nullable();
+    }),
+
+    knex.schema.createTable('id_id', function(table){
+      table.increments('id').primary();
+      table.integer('user_id')
+        .references('id')
+        .inTable('users');
+      table.integer('hunt_id')
+        .references('id')
+        .inTable('hunts');
+      table.integer('clue_id')
+        .references('id')
+        .inTable('clues');
+      table.boolean('score').nullable() ;
+    })
+  ])
+};
