@@ -1,4 +1,4 @@
-import { MasterPage, IndexPage, LoginPage, RegistrationPage, ProfilePage } from './pages';
+import { MasterPage, IndexPage, LoginPage, RegistrationPage, ProfilePage, CreateHunt } from './pages';
 import ReactStormpath, { Router, HomeRoute, LoginRoute, AuthenticatedRoute } from 'react-stormpath';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,6 +12,7 @@ ReactDOM.render(
     <IndexRoute component={IndexPage} />
     <LoginRoute path='/login' component={LoginPage} />
     <AuthenticatedRoute>
+      <Route path='/createhunt' component={CreateHunt} />
       <HomeRoute path='/profile' component={ProfilePage} />
     </AuthenticatedRoute>
       <Route path='/register' component={RegistrationPage} />

@@ -19,6 +19,7 @@
     "babel-runtime": "^6.9.2",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "express-generator": "^4.13.1",
     "express-stormpath": "^3.1.2",
     "history": "^1.13.1",
     "react": "^15.1.0",
