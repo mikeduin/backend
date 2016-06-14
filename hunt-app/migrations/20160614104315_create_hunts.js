@@ -1,7 +1,6 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('hunts', function(table){
-    table.increments('id').primary();
+    table.increments();
     table.string('hunt_name');
     table.date('date');
     table.time('start_time');

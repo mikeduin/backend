@@ -1,9 +1,9 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('ids', function(table){
-    table.increments('id').primary();
+    table.increments();
     table.integer('user_id')
-      .references('id')
+      .references('uid')
       .inTable('users');
     table.integer('hunt_id')
       .references('id')
