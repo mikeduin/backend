@@ -4,6 +4,7 @@ var stormpath = require('express-stormpath');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var bodyParser = require('body-parser');
+var knex = require('./db/knex');
 
 var app = express();
 var compiler = webpack(config);
